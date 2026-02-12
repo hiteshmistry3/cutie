@@ -85,9 +85,10 @@ h1{
 /* NAME */
 #name{
     font-family:'Noto Serif Gujarati',serif;
-    font-size:30px;
+    font-size:28px;      /* smaller for mobile-friendly one line */
     margin:14px 0;
-    letter-spacing:2px;
+    letter-spacing:1px;
+    white-space:nowrap;  /* ensures one line only */
 }
 
 .name-text{
@@ -99,6 +100,7 @@ h1{
 @keyframes nameGlow{
     to{filter:brightness(1.4);}
 }
+
 .name-emoji{-webkit-text-fill-color:initial;}
 
 /* TEXT */
@@ -230,9 +232,7 @@ function typeName(){
         i++;
         setTimeout(typeName,120);
     }else{
-        nameEl.innerHTML=
-        `<span class="name-text">${nameText}</span>
-         <span class="name-emoji"> ${emoji}</span>`;
+        nameEl.innerHTML=`<span class="name-text">${nameText}</span><span class="name-emoji">${emoji}</span>`;
         setTimeout(typeText,400);
     }
 }
