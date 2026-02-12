@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;500;600&family=Noto+Serif+Gujarati:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    min-height:100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)),
+        url("back.jpeg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-family:'Poppins',sans-serif;
+    color:#fff;
+    overflow-x:hidden;
+    text-align:center;
+}
+
+/* FLOATING HEARTS */
+.heart{
+    position:fixed;
+    bottom:-50px;
+    animation:floatUp linear infinite;
+    pointer-events:none;
+}
+@keyframes floatUp{
+    to{transform:translateY(-130vh) scale(1.6);opacity:0;}
+}
+
+/* CARD */
+.card-glass{
+    width:92%;
+    max-width:360px;
+    height:520px;
+    border-radius:42px;
+    overflow:hidden;
+    margin-top:25px;
+    backdrop-filter:blur(14px);
+    background:rgba(255,255,255,0.12);
+    box-shadow:0 40px 120px rgba(0,0,0,0.5);
+}
+
+/* SLIDER */
+.bg-slider{position:relative;width:100%;height:100%;}
+.bg-slider img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    animation:slide 30s infinite;
+}
+@keyframes slide{
+    0%{opacity:0;}
+    10%{opacity:1;}
+    22%{opacity:1;}
+    30%{opacity:0;}
+}
+.bg-slider img{animation-delay:calc(var(--i)*3s);}
+
+/* TEXT */
+.text-area{
+    margin-top:26px;
+    max-width:420px;
+    padding:0 16px;
+}
+
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:34px;
+}
+
+/* NAME */
+#name{
+    font-family:'Noto Serif Gujarati',serif;
+    font-size:30px;
+    margin:14px 0;
+    letter-spacing:2px;
+}
+
+.name-text{
+    background:linear-gradient(90deg,#fff,#ffd1e8,#fff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:nameGlow 3s infinite alternate;
+}
+@keyframes nameGlow{
+    to{filter:brightness(1.4);}
+}
+.name-emoji{-webkit-text-fill-color:initial;}
+
+/* TEXT */
+#type,#final{
+    font-family:'Noto Serif Gujarati',serif;
+    font-size:16px;
+    line-height:2;
+}
+
+/* FINAL */
+#final{
+    display:none;
+    margin:12px 0;
+    animation:fadeUp 1s ease forwards;
+}
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* BUTTON */
+.btn-love{
+    margin-top:18px;
+    padding:14px 42px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(135deg,#ff2f73,#ff6aa2);
+    color:#fff;
+    font-size:16px;
+    box-shadow:0 20px 50px rgba(255,47,115,.9);
+}
+
+/* GALLERY */
+.gallery{
+    width:100%;
+    max-width:420px;
+    padding:0 14px;
+    margin:30px 0 40px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.gallery img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:20px;
+    opacity:0;
+    transform:translateY(30px) scale(.9);
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
+}
+
+.gallery.show img{
+    animation:imgShow .8s ease forwards;
+}
+.gallery.show img{animation-delay:calc(var(--i)*.12s);}
+@keyframes imgShow{
+    to{opacity:1;transform:translateY(0) scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="ishq_hai.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card-glass">
+    <div class="bg-slider">
+        <img src="my10.jpeg" style="--i:0">
+        <img src="my2.jpeg" style="--i:1">
+        <img src="my4.jpeg" style="--i:2">
+        <img src="my9.jpeg" style="--i:3">
+        <img src="my5.jpeg" style="--i:4">
+        <img src="my6.jpeg" style="--i:5">
+        <img src="my8.jpeg" style="--i:6">
+        <img src="my7.jpeg" style="--i:7">
+        <img src="my3.jpeg" style="--i:8">
+        <img src="my11.jpeg" style="--i:9">
+        <img src="my1.jpeg" style="--i:10">
+    </div>
+</div>
+
+<div class="text-area">
+    <h1>Happy Valentine’s Day ❤️</h1>
+
+    <div id="name"></div>
+
+    <div id="final">
+        You stayed when I was hard to handle,<br>
+        You listened when I had nothing to say.<br>
+        That’s love without conditions. ❤️
+    </div>
+
+    <div id="type"></div>
+
+    <button id="heartBtn" class="btn-love" onclick="openHeart()">Open My Heart 💌</button>
+</div>
+
+<div class="gallery" id="gallery">
+    <img src="my10.jpeg" style="--i:1">
+    <img src="my2.jpeg" style="--i:2">
+    <img src="my3.jpeg" style="--i:3">
+    <img src="my4.jpeg" style="--i:4">
+    <img src="my8.jpeg" style="--i:5">
+    <img src="my6.jpeg" style="--i:6">
+    <img src="my7.jpeg" style="--i:7">
+    <img src="my5.jpeg" style="--i:8">
+    <img src="my11.jpeg" style="--i:9">
+</div>
+
+<script>
+const nameEl=document.getElementById("name");
+const typeEl=document.getElementById("type");
+const finalEl=document.getElementById("final");
+const heartBtn=document.getElementById("heartBtn");
+const gallery=document.getElementById("gallery");
+const music=document.getElementById("bgMusic");
+
+const nameText="AARTI";
+const emoji="(Cutie😇☺️) ❤️";
+let i=0;
+
+function typeName(){
+    if(i<nameText.length){
+        nameEl.innerHTML=`<span class="name-text">${nameText.slice(0,i+1)}</span>`;
+        i++;
+        setTimeout(typeName,120);
+    }else{
+        nameEl.innerHTML=
+        `<span class="name-text">${nameText}</span>
+         <span class="name-emoji"> ${emoji}</span>`;
+        setTimeout(typeText,400);
+    }
+}
+typeName();
+
+const lines=[
+"Some people heal you just by existing.",
+"You are that person in my life,",
+"My best friend, my calm. ✨"
+];
+let t=0;
+function typeText(){
+    if(t<lines.length){
+        typeEl.innerHTML+=lines[t++]+"<br>";
+        setTimeout(typeText,400);
+    }
+}
+
+function openHeart(){
+    music.play();
+    finalEl.style.display="block";
+    heartBtn.remove();
+    setTimeout(()=>{
+        gallery.classList.add("show");
+        gallery.scrollIntoView({behavior:"smooth"});
+    },500);
+}
+
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML=["❤️","💖","💕","💘"][Math.floor(Math.random()*4)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(18+Math.random()*22)+"px";
+    h.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),12000);
+},600);
+</script>
+
+</body>
+</html>
